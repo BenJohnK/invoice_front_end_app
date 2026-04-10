@@ -5,6 +5,7 @@ import {
   TableContainer, TableHead,
   TableRow, Paper
 } from '@mui/material'
+import { useRouter } from 'next/navigation'
 
 type Invoice = {
   id: number
@@ -20,6 +21,7 @@ type Invoice = {
 
 export default function Page() {
   const [invoices, setInvoices] = useState<Invoice[]>([])
+  const router = useRouter()
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/invoices/`)
@@ -44,7 +46,11 @@ export default function Page() {
 
         <TableBody>
             {invoices.map((inv) => (
-            <TableRow key={inv.id}>
+            <TableRow
+                key={inv.id}
+                onClick={() => router.push(`/dashboard/${inv.id}`)}
+                sx={{ cursor: 'pointer' }}
+            >
                 <TableCell>{inv.id}</TableCell>
                 <TableCell>{inv.title}</TableCell>
                 <TableCell>{inv.status}</TableCell>
