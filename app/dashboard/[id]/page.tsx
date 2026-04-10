@@ -26,7 +26,7 @@ export default function Page() {
       .then(data => setInvoice(data))
   }, [id])
 
-  if (!invoice) return <div>Loading...</div>
+  if (!invoice) return <div>Loading</div>
 
   return (
     <div>
