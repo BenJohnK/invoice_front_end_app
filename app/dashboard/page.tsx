@@ -22,7 +22,7 @@ export default function Page() {
   const [invoices, setInvoices] = useState<Invoice[]>([])
 
   useEffect(() => {
-    fetch('https://invoice-django-project.onrender.com/api/v1/invoices/')
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/invoices/`)
       .then(res => res.json())
       .then(data => setInvoices(data))
       .catch(err => console.error(err))
